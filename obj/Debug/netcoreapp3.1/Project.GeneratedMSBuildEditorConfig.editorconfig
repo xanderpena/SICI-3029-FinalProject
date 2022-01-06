@@ -1,3 +1,9 @@
 is_global = true
+build_property.ApplicationManifest = 
+build_property.StartupObject = 
+build_property.ApplicationDefaultFont = 
+build_property.ApplicationHighDpiMode = 
+build_property.ApplicationUseCompatibleTextRendering = 
+build_property.ApplicationVisualStyles = 
 build_property.RootNamespace = Project
-build_property.ProjectDir = C:\Users\17879\source\repos\Project\
+build_property.ProjectDir = C:\Users\jorlu\Projects\AlexanderPena\SICI-3029\
