@@ -34,43 +34,21 @@ namespace Project
         }
 
         private void Form2_Load(object sender, EventArgs e)
-        {
+        { 
+
             label1.Text = "Enter Couser Code";
-
             label2.Text = "Enter Professor Name";
-
             label3.Text = "Enter the Classroom";
-
             label4.Text = "Search by Options/ Modes";
 
 
-            // TODO
+            DataTable table = ConvertCSVToDataTable(@"C:\Users\jorlu\Projects\AlexanderPena\SICI-3029\Course_Scheduling_Data.csv");
 
-            //using (Microsoft.VisualBasic.FileIO.TextFieldParser parser = new Microsoft.VisualBasic.FileIO.TextFieldParser(@"C:\Users\17879\OneDrive\Universidad\Fall 21-22\SICI-3029/Course_Scheduling_Data.csv"))
-            //{
-            //    parser.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited;
-            //    parser.SetDelimiters(",");
-            //    while (!parser.EndOfData)
-            //    {
-            //        //Processing row
-            //        string[] fields = parser.ReadFields();
-                    
-            //        foreach (string field in fields)
-            //        {
 
-            //        }
-            //    }
-            //}
-
-            DataTable table = ConvertCSVToDataTable(@"C:\Users\17879\OneDrive\Universidad\Fall 21-22\SICI-3029/Course_Scheduling_Data.csv");
-            //dataGridViewResults.DataSource = table;
             BindingSource BS = new BindingSource();
             BS.DataSource = table;
             dataGridViewResults.DataSource = BS;
-
             dataGridViewResults.Refresh();
-
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -95,7 +73,7 @@ namespace Project
 
         public static DataTable ConvertCSVToDataTable(string fileName)
         {
-            char splitChars = ',';
+            char csvDelimiter = ',';
 
             var table = new DataTable();
 
@@ -106,7 +84,7 @@ namespace Project
                 var rowdatas = new string[200];
                 // get the first row of csv
                 string header = reader.ReadLine();
-                var fields = header.Split(splitChars);
+                var fields = header.Split(csvDelimiter);
 
                 foreach (string column in fields)
                 {
@@ -118,32 +96,22 @@ namespace Project
                 // read to end
                 while (row != null)
                 {
-                    //if ( row.Contains(",\""))
-                    //{
-                    //    table.Rows.Add(rowdatas);
-                    //    row = reader.ReadLine();
-                    //}
-                    //else
-                    //{
-                    //    rowdatas = row.Split(splitChars);
-                    //    table.Rows.Add(rowdatas);
-                    //    row = reader.ReadLine();
-                    //}
-                    // add each row to datatable 
 
-
-                    //}
                     if (row.Contains(",\""))
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        rowdatas = row.Split(splitChars);
+                        // TODO
                         table.Rows.Add(rowdatas);
                         row = reader.ReadLine();
                     }
-                
+                    else
+                    {
+                        rowdatas = row.Split(csvDelimiter);
+                        table.Rows.Add(rowdatas);
+                        row = reader.ReadLine();
+                    }
+                    // add each row to datatable
+
+
                 }
 
                 return table;
